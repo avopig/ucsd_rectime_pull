@@ -2,6 +2,7 @@ import time, requests, re, pandas as pd, numpy as np
 from os.path import exists
 from datetime import datetime
 from bs4 import BeautifulSoup
+from sympy import N
 
 def pull_date_hours(url="https://recreation.ucsd.edu/open-rec/"):
 
@@ -50,6 +51,27 @@ def merge_dfs(df1, df2):
     df = pd.merge(df1, df2, on='Scheduled Date', how='outer')
     return df
 
+def push_to_github(filename='log.csv'):
+    '''Push the log file to github'''
+    raise NotImplementedError
+    # now = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+    # commit_msg = f'Update @ {now}'
+    # with open(filename, 'r') as f:
+    #     commit_data = {
+    #         'content': f.read(),
+    #         'committer': {
+    #             'name': 'RIMAC Open Rec Scraper',
+    #             'email': '<EMAIL>'
+    #         },
+    #         'branch':'main',
+    #        'message': commit_msg
+    #     }
+    # response = requests.put(
+    #     'https://api.github.com/repos/RIMAC-CMD/open-rec-scraper/contents/log.csv',
+    #     json=commit_data,
+    #     headers={'Authorization': f'token {GITHUB_TOKEN}'}
+    # )
+    # if response.status_code!= 200: print(response.text)
 
 
 if __name__ == '__main__':
